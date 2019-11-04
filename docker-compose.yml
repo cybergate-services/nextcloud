@@ -63,7 +63,22 @@ services:
     ports:
       - 443:443
     restart: restart
-
+ 
+  duplicati:
+    image: linuxserver/duplicati
+    container_name: duplicati
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Colombo
+      - CLI_ARGS= #optional
+    volumes:
+      - ./duplicati/config:/config
+      - /opt/backups:/backups
+      - /opt/nextcloud:/source
+    ports:
+      - 8200:8200
+    restart: restart
 networks:
   nextcloud-network:
     driver: bridge
