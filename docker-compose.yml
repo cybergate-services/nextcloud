@@ -1,26 +1,56 @@
 ---
-version: "2"
+version: "2.1"
 services:
   letsencrypt:
     image: linuxserver/letsencrypt
     container_name: letsencrypt
+    hostname: letsencrypt
     cap_add:
       - NET_ADMIN
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Colombo
-      - URL=wijeya.lk
-      - SUBDOMAINS=cloud,
-      - VALIDATION=http
-      - EMAIL=dasun@wijeya.lk #optional
-      - DHLEVEL=2048 #optional
-      - ONLY_SUBDOMAINS=false #optional
-      - EXTRA_DOMAINS=extradomains #optional
-      - STAGING=false #optional
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - URL=${URL}
+      - SUBDOMAINS=${SUBDOMAINS},
+      - VALIDATION=${VALIDATION}
+      - EMAIL=${EMAIL}
+      - DHLEVEL=${DHLEVEL}
+      - ONLY_SUBDOMAINS=${ONLY_SUBDOMAINS}
+      - STAGING=${STAGING}
+    networks:
+      nextcloud-network:
+        aliases:
+          - letsencrypt
     volumes:
-      - /path/to/appdata/config:/config
+      - ./letsencrypt/config:/config
     ports:
       - 443:443
       - 80:80 #optional
-    restart: unless-stopped
+    restart: always
+    
+  mariadb:
+    image: linuxserver/mariadb
+    container_name: mariadb
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - MYSQL_ROOT_PASSWORD=$(ROOTPASS}
+      - TZ=Asia/Colombo
+      - MYSQL_DATABASE=$(DBNAME} 
+      - MYSQL_USER=${DBUSER} 
+      - MYSQL_PASSWORD=${DBPASS}
+    networks:
+      nextcloud-network:
+        aliases:
+          - mariadb
+    volumes:
+      - ./mariadb/config:/config
+    ports:
+      - 3306:3306
+    restart: restart
+
+networks:
+  nextcloud-network:
+    driver: bridge
+    
