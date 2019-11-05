@@ -88,4 +88,4 @@ STAGING=${STAGING}
 TZ=${NEXTCLOUD_TZ}
 EOF
 
-ln ./cybererp.conf ./.env
+ln ./nextcloud.conf ./.env
