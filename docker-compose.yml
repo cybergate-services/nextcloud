@@ -32,6 +32,7 @@ services:
   mariadb:
     image: linuxserver/mariadb
     container_name: mariadb
+    hostname: mariadb
     environment:
       - PUID=1000
       - PGID=1000
@@ -48,11 +49,38 @@ services:
       - ./mariadb/config:/config
     ports:
       - 3306:3306
-    restart: restart
+    restart: always
+  
+  mariadb-backup:
+    container_name: mariadb-backup
+    hostname: mariadb-backup
+    image: tiredofit/db-backup
+    links:
+     - mariadb
+    volumes:
+      - ./mariadb/backups:/backup
+    environment:
+      - DB_TYPE=mariadb
+      - DB_HOST=mariadb
+      - DB_NAME=${DBNAME}
+      - DB_USER=${DBUSER}
+      - DB_PASS=${DBUSER}
+      - DB_DUMP_FREQ=1440
+      - DB_DUMP_BEGIN=0000
+      - DB_CLEANUP_TIME=8640
+      - MD5=TRUE
+      - COMPRESSION=XZ
+      - SPLIT_DB=FALSE
+    networks:
+      nextcloud-network:
+        aliases:
+          - mariadb-backup
+    restart: always
   
   nextcloud:
     image: linuxserver/nextcloud
     container_name: nextcloud
+    hostname: nextcloud
     environment:
       - PUID=1000
       - PGID=1000
@@ -60,25 +88,35 @@ services:
     volumes:
       - ./nextcloud/config:/config
       - ./nextcloud/data:/data
+    networks:
+      nextcloud-network:
+        aliases:
+          - nextcloud
     ports:
       - 443:443
-    restart: restart
+    restart: always
  
   duplicati:
     image: linuxserver/duplicati
     container_name: duplicati
+    hostname: duplicati
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Asia/Colombo
       - CLI_ARGS= #optional
+    networks:
+      nextcloud-network:
+        aliases:
+          - duplicati
     volumes:
       - ./duplicati/config:/config
       - /opt/backups:/backups
       - /opt/nextcloud:/source
     ports:
       - 8200:8200
-    restart: restart
+    restart: always
+
 networks:
   nextcloud-network:
     driver: bridge
