@@ -13,3 +13,8 @@ Although the Docker installation package is available in the official Ubuntu 18.
 ## Enabling Docker repository
 
 **01.** Start by updating the packages list and installing the dependencies necessary to add a new repository over HTTPS:
+
+```
+sudo apt update
+sudo apt install apt-transport-https ca-certificates curl gnupg-agent software-properties-common
+```
