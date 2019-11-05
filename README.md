@@ -32,7 +32,9 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 
 Now that the Docker repository is enabled, you can install any Docker version you need.
 
-**01.** To install the latest version of Docker use the command below. If you want to install a specific Docker version, skip ...this step and go to the next one.
+**01.** To install the latest version of Docker use the command below. If you want to install a specific Docker version, skip 
+
+...this step and go to the next one.
 
 ```
 sudo apt update
