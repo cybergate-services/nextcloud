@@ -38,7 +38,7 @@ services:
       - PGID=${PUID}
       - MYSQL_ROOT_PASSWORD=${DBROOTPASS}
       - TZ=${TZ}
-      - MYSQL_DATABASE=$(DBNAME} 
+      - MYSQL_DATABASE=${DBNAME} 
       - MYSQL_USER=${DBUSER} 
       - MYSQL_PASSWORD=${DBPASS}
     networks:
