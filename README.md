@@ -80,6 +80,20 @@ sudo curl -L "https://github.com/docker/compose/releases/download/1.24.1/docker-
 sudo chmod +x /usr/local/bin/docker-compose
 ```
 
+## Install Nextcloud Docker 
+
+```
+cd /opt
+sudo git@github.com:cybergate-services/nextcloud.git
+cd nextcloud
+sudo bash generate-conf.sh
+sudo docker-compose up -d
+```
+
+
+```
+
+
 
 
 
