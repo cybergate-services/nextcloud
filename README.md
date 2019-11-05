@@ -89,12 +89,3 @@ cd nextcloud
 sudo bash generate-conf.sh
 sudo docker-compose up -d
 ```
-
-
-```
-
-
-
-
-
-
