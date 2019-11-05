@@ -94,7 +94,7 @@ services:
           - nextcloud
           
     ports:
-      - 443:444
+      - 444:443
     restart: always
  
   duplicati:
