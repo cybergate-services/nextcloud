@@ -53,6 +53,7 @@ VALIDATION=http
 DHLEVEL=2048 
 ONLY_SUBDOMAINS=true 
 STAGING=false
+EMAIL=dasun@wijeya.lk
 
 cat << EOF > nextcloud.conf
 # -------------------------------------
@@ -65,13 +66,8 @@ NEXTCLOUD_HOSTNAME=${NEXTCLOUD_HOSTNAME}
 # ----------------------------------
 DBNAME=${DBNAME}
 DBUSER=${DBUSER}
+DBPASS=${DBPASS}
 DBROOTPASS=${DBROOTPASS}
-
-# --------------------
-# PGADMIN Environment
-# --------------------
-PGADMIN_PASSWORD=${PGADMIN_PASSWORD}
-PGADMIN_EMAIL=${EMAIL}
 
 #-------------------------
 # LETSENCRYPT Environment
