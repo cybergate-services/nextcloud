@@ -34,8 +34,8 @@ services:
     container_name: mariadb
     hostname: mariadb
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=${PUID}
+      - PGID=${PUID}
       - MYSQL_ROOT_PASSWORD=$(DBROOTPASS}
       - TZ=Asia/Colombo
       - MYSQL_DATABASE=$(DBNAME} 
@@ -82,9 +82,9 @@ services:
     container_name: nextcloud
     hostname: nextcloud
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Colombo
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=$[TZ}
     volumes:
       - ./nextcloud/config:/config
       - ./nextcloud/data:/data
@@ -101,9 +101,9 @@ services:
     container_name: duplicati
     hostname: duplicati
     environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Asia/Colombo
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
       - CLI_ARGS= #optional
     networks:
       nextcloud-network:
