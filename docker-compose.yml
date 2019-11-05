@@ -92,8 +92,6 @@ services:
       nextcloud-network:
         aliases:
           - nextcloud
-    ports:
-      - 443:443
     restart: always
  
   duplicati:
