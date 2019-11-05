@@ -84,7 +84,7 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PGID}
-      - TZ=$[TZ}
+      - TZ=${TZ}
     volumes:
       - ./nextcloud/config:/config
       - ./nextcloud/data:/data
