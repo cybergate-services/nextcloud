@@ -36,8 +36,8 @@ services:
     environment:
       - PUID=${PUID}
       - PGID=${PUID}
-      - MYSQL_ROOT_PASSWORD=$(DBROOTPASS}
-      - TZ=Asia/Colombo
+      - MYSQL_ROOT_PASSWORD=${DBROOTPASS}
+      - TZ=${TZ}
       - MYSQL_DATABASE=$(DBNAME} 
       - MYSQL_USER=${DBUSER} 
       - MYSQL_PASSWORD=${DBPASS}
