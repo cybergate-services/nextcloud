@@ -45,8 +45,8 @@ DBNAME=nextcloud
 DBUSER=nextcloud
 DBPASS=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 | head -c 28)
 DBROOTPASS=$(LC_ALL=C </dev/urandom tr -dc A-Za-z0-9 | head -c 28)
-PUID=1002
-PGID=1002
+PUID=1001
+PGID=1001
 URL=$(echo ${NEXTCLOUD_HOSTNAME} | cut -n -f 1  -d . --complement)
 SUBDOMAIN=cloud,backup
 VALIDATION=http
