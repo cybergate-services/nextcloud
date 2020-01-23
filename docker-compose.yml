@@ -121,13 +121,13 @@ services:
   phpmyadmin:
     image: openemail/phpmyadmin
     container_name: phpmyadmin
-    hostname: pma.${OPENEMAIL_DOMAIN}
+    hostname: pma.${URL}
     restart: always
     environment:
       - TZ=${TZ}
       - PMA_HOST=mysql
       - PMA_ARBITRARY=1
-      - PMA_ABSOLUTE_URI=https://${OPENEMAIL_HOSTNAME}/phpmyadmin/
+      - PMA_ABSOLUTE_URI=https://${NEXTCLOUD_HOSTNAME}/phpmyadmin/
     networks:
       nextcloud-network:
         aliases:
