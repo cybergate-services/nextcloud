@@ -117,8 +117,22 @@ services:
     ports:
       - 8200:8200
     restart: always
-
+    
+  phpmyadmin:
+    image: openemail/phpmyadmin
+    container_name: phpmyadmin
+    hostname: pma.${OPENEMAIL_DOMAIN}
+    restart: always
+    environment:
+      - TZ=${TZ}
+      - PMA_HOST=mysql
+      - PMA_ARBITRARY=1
+      - PMA_ABSOLUTE_URI=https://${OPENEMAIL_HOSTNAME}/phpmyadmin/
+    networks:
+      nextcloud-network:
+        aliases:
+          - phpmyadmin
 networks:
   nextcloud-network:
     driver: bridge
-    
+      
