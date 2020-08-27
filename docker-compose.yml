@@ -2,9 +2,9 @@
 version: "2.1"
 services:
   letsencrypt:
-    image: linuxserver/letsencrypt
-    container_name: letsencrypt
-    hostname: letsencrypt
+    image: linuxserver/swag
+    container_name: swag
+    hostname: swag
     cap_add:
       - NET_ADMIN
     environment:
