@@ -21,7 +21,7 @@ services:
     networks:
       nextcloud-network:
         aliases:
-          - letsencrypt
+          - swag
     volumes:
       - ./swag/config:/config
     ports:
